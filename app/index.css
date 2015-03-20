@@ -1,0 +1,86 @@
+.close { position: absolute; top: 0; right: 0; }
+
+.selected {
+	background-color: white !important;
+	color: black !important;
+}
+
+.viewport {
+	box-sizing: border-box;
+	margin: 0 auto;
+	display: flex;
+}
+
+body {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+
+	display: flex;
+	flex-direction: column;
+}
+
+body > div {
+	width: 100%;
+	flex: 1;
+}
+
+body > input {
+	flex: initial;
+}
+
+.viewport > * {
+	border: 1px black solid;
+}
+
+/* Server/Channel list */
+#server_channels {
+	flex: 1;
+}
+
+#channels {
+	flex: 7;
+}
+
+/* Channel layout */
+.channel {
+	width: 100%;
+}
+
+.channel li {
+    list-style-type: none;
+}
+
+.channel > div {
+	display: flex;
+	flex-direction: column;
+	flex: 4;
+}
+
+.channel > div > header {
+	flex: initial;
+	min-height: 1.2em;
+	overflow-y: hidden;
+}
+
+.channel > div > ul {
+	flex: 1;
+	overflow: auto;
+}
+
+.channel > div > input {
+	min-height: 1.2em;
+}
+
+.channel > ul {
+	flex: 1;
+}
+
+/* Themeing */
+* {
+	background-color: black;
+	color: white;
+	font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace;
+}

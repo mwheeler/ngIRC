@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ngIRC</title>
+    <link href="index.css" media="all" rel="stylesheet" />
+	<script src="js/jquery.min.js"></script>
+	<script src="js/angular.js"></script>
+	<script src="ctrl/server.js"></script>
+	<script src="ctrl/channel.js"></script>
+	<script src="ctrl/command.js"></script>
+	<script src="ctrl/app.js"></script>
+</head>
+<body ng-app="IRC" ng-controller="Client" ng-init="config('ngIRC.config');">
+	<div class="viewport">
+		<ul id="server_channels">
+			<li ng-repeat="server in servers" ng-click="setChannel(server.name); $event.stopPropagation()" ng-class="{ selected: current_channel == server.name }">
+				{{server.name}}
+				<ul>
+					<li ng-repeat="channel in server.channels" ng-if="channel.name" ng-click="setChannel(server.name + '-' + channel.name); $event.stopPropagation()" ng-class="{ selected: current_channel == server.name + '-' + channel.name }">
+						{{channel.name}}
+					</li>
+				</ul>
+			</li>
+		</ul>
+		<div id="channels" class="viewport">
+			<div class="channel viewport" ng-repeat="(id, channel) in channels" ng-controller="ChannelCtrl" ng-show="id == current_channel">
+				<div>
+					<header>{{channel.topic}}</header>
+					<ul>
+						<li ng-repeat="msg in channel.messages">
+							{{msg.timestamp | date: 'hh:mm'}} {{msg.from? '<' + msg.from + '>' : ''}} {{msg.text}}
+						</li>
+					</ul>
+				</div>
+				<ul>
+					<li ng-repeat="user in channel.users">
+						{{user}}
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<input type="text" ng-controller="CommandCtrl" ng-keypress="($event.which == 13)?processCommand():0; $event.stopPropagation()" ng-model="command" />
+	<button onclick="window.close();" class="close">x</button>
+</body>
+</html>

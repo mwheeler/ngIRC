@@ -26,3 +26,9 @@ node_modules
 
 # Users Environment Variables
 .lock-wscript
+
+# Build/Intermediate/Distribution directories
+build
+cache
+node_modules
+dist
