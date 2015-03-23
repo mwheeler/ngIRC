@@ -2,7 +2,7 @@ var path = require('path');
 var gulp = require('gulp');
 var jeditor = require("gulp-json-editor");
 var NwBuilder = require('node-webkit-builder');
-var promise = require('bluebird');
+var Promise = require('bluebird');
 
 var config = {
 	dir: {
