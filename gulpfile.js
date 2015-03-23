@@ -50,7 +50,7 @@ gulp.task('install-dependencies', function()
 	return Promise.all(tasks);
 });
 
-gulp.task('build', ['install-dependencies'], function(cb)
+gulp.task('build', function(cb)
 {
 	var tasks = [];
 
@@ -87,7 +87,7 @@ gulp.task('build', ['install-dependencies'], function(cb)
 	return Promise.all(tasks);
 });
 
-gulp.task('package', ['build'], function()
+gulp.task('package', ['install-dependencies', 'build'], function()
 {
 	var nw = new NwBuilder({
 	    files: path.join(config.dir.build, '**', '**'),
